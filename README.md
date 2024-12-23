@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ModArch - Générateur d'Architecture Modulaire</title>
-    <style>
+    <!--<style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -56,7 +56,7 @@
             width: 100%;
             bottom: 0;
         }
-    </style>
+    </style> -->
 </head>
 <body>
 
