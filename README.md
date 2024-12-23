@@ -3,60 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModArch - Générateur d'Architecture Modulaire</title>
-    <!--<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-        }
-        section {
-            padding: 20px;
-            margin: 10px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        section h2 {
-            color: #4CAF50;
-        }
-        .screenshot {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 8px;
-        }
-        pre {
-            background-color: #2e2e2e;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        .emoji {
-            font-size: 2rem;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #4CAF50;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style> -->
 </head>
 <body>
 
