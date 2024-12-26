@@ -3,65 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModArch - Générateur d'Architecture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #1e1e2f; /* Couleur de fond sombre */
+            color: #f1f1f1; /* Texte clair */
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #ffcc00; /* Titre en jaune */
+        }
+        h2 {
+            color: #5ccfe6; /* Sous-titre bleu clair */
+        }
+        code {
+            background: #282a36; /* Fond sombre pour le code */
+            color: #f8f8f2; /* Texte clair pour le code */
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+        }
+        pre {
+            background: #282a36; /* Fond sombre pour les blocs de code */
+            color: #f8f8f2; /* Texte clair */
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
-
-<header>
-    <h1>Bienvenue dans ModArch! 🎉</h1>
-    <p>Le générateur d'architecture modulaire qui fait briller ton projet ! ✨</p>
-</header>
-
-<section>
-    <h2>Qu'est-ce que ModArch ? 🤔</h2>
-    <p>
-        ModArch est un générateur d'architecture de projet modulable qui t'aide à créer rapidement une structure
-        de projet bien organisée. Avec ModArch, tu n'as plus à t'inquiéter de l'organisation de tes fichiers et répertoires.
-        Tu choisis simplement ton nom de projet et ton langage de programmation (ou laisse le par défaut : C) et hop,
-        l'architecture est générée pour toi !
-    </p>
-    <img src="img/arch_view.png" alt="Architecture Modulaire" class="screenshot">
-</section>
-
-<section>
-    <h2>Comment créer une architecture ? 🚀</h2>
-    <p>
-        Pour générer une architecture de projet, utilise la commande suivante dans ton terminal :
-    </p>
-    <pre>
-make PROJECT_NAME="my_project" TYPE_LANGUAGE=.cpp
-    </pre>
-    <p>
-        💡 <strong>Note :</strong> Si tu ne spécifies pas de langage de programmation, ModArch utilise le langage <strong>C</strong> par défaut.
-    </p>
-    <img src="img/create_arch.png" alt="Création d'Architecture" class="screenshot">
-</section>
-
-<section>
-    <h2>Comment supprimer l'architecture ? 💥</h2>
-    <p>
-        Si tu veux supprimer l'architecture générée, utilise la commande suivante :
-    </p>
-    <pre>
-make clean PROJECT_NAME="my_project"
-    </pre>
-    <img src="img/remove_arch.png" alt="Suppression de l'Architecture" class="screenshot">
-</section>
-
-<section>
-    <h2>Besoin d'aide ? 🤖</h2>
-    <p>
-        Tu veux en savoir plus sur les commandes disponibles ? Pas de souci, utilise la commande suivante pour
-        obtenir de l'aide !
-    </p>
-    <pre>
-make help
-    </pre>
-    <img src="img/help_arch.png" alt="Aide ModArch" class="screenshot">
-</section>
-
-<footer>
-    <p>Créé avec ❤️ par Mamadou Bah (42 Stud) - Sous licence ModArch</p>
-</footer>
-
+    <header>
+        <h1>🚀 ModArch - Générateur d'Architecture de Projet</h1>
+        <p>Un générateur d'architecture flexible et efficace pour vos projets en C ou C++ !</p>
+    </header>
+    <main>
+        <section>
+            <h2>✨ Fonctionnalités</h2>
+            <ul>
+                <li>📂 Génère une architecture modulaire et claire pour vos projets.</li>
+                <li>🌟 Crée automatiquement un programme de base affichant "Hello World".</li>
+                <li>🛠️ Inclut un <code>Makefile</code> personnalisable et un exécutable <code>updateMakefile</code>.</li>
+                <li>🔗 Initialise automatiquement un dépôt Git.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>🛠️ Utilisation</h2>
+            <p>Générez une nouvelle architecture en exécutant :</p>
+            <code>make PROJECT_NAME=<i>nom_projet</i> TYPE_LANGUAGE=<i>.cpp</i></code>
+            <ul>
+                <li><b>PROJECT_NAME :</b> Nom de votre projet (par défaut : <code>MyProject</code>).</li>
+                <li><b>TYPE_LANGUAGE :</b> Extension du langage de programmation (<code>.c</code> ou <code>.cpp</code>, par défaut : <code>.c</code>).</li>
+            </ul>
+        </section>
+        <section>
+            <h2>📖 Structure Générée</h2>
+            <pre>
+.ModArch/
+   .ModArch.config
+lib/
+src/
+    app/
+       core/
+       utility/
+    main.c
+inc/
+   nom_projet.h
+public/
+test/
+Makefile
+Readme.md
+.gitignore
+            </pre>
+        </section>
+        <section>
+            <h2>🚨 Points Importants</h2>
+            <ul>
+                <li>Les fichiers <code>src/main.c</code> et <code>src/app/core/core.hello_word.c</code> sont nécessaires pour le programme par défaut mais peuvent être supprimés si besoin.</li>
+                <li>L'exécutable <code>updateMakefile</code> met à jour uniquement le <code>Makefile</code> sans toucher aux autres fichiers.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>🔧 Mise à Jour du Makefile</h2>
+            <p>Pour mettre à jour le <code>Makefile</code> après l'ajout de nouveaux fichiers :</p>
+            <code>./updateMakefile <i>nom_projet</i></code>
+            <p>Si le nom du projet n'est pas fourni, un message de rappel sera affiché.</p>
+        </section>
+        <footer>
+            <p>💡 Bon codage et amusez-vous bien !</p>
+        </footer>
+    </main>
 </body>
 </html>

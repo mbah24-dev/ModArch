@@ -6,31 +6,32 @@
 #    By: mbah <mbah@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/22 22:54:24 by mbah              #+#    #+#              #
-#    Updated: 2024/12/23 01:51:18 by mbah             ###   ########.fr        #
+#    Updated: 2024/12/26 22:56:53 by mbah             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROJECT_NAME ?= modular_project
 TYPE_LANGUAGE ?= .c
+USER         := $(shell whoami)
+DATE         := $(shell date '+%Y-%m-%d %H:%M:%S')
 MODULAR_ARCH = ModArch
 SRC_DIR      = src
+APP_DIR      = src/app
 INC_DIR      = inc
 LIB_DIR      = lib
-TST_DIR      = tests
+TST_DIR      = test
 MKE_FILE     = Makefile
 RDM_FILE     = Readme.md
-INIT_DIR     = init
-PARSE_DIR    = parsing
-CORE_DIR     = core
-UTILS_DIR    = utils
-UTILS_FILE_H = utils.h
-ERR_DIR      = errors
-PROJ_FILE_C  = $(PROJECT_NAME)$(TYPE_LANGUAGE)
+CORE_DIR     = src/app/core
+UTILS_DIR    = src/app/utility
+PUBLIC_DIR   = public
+MAIN         = main
+PROJ_FILE_C  = $(MAIN)$(TYPE_LANGUAGE)
 PROJ_FILE_H  = $(PROJECT_NAME).h
 
 RED=\033[0;31m
 GREEN=\033[0;32m
-BLUE=\033[0;34m
+BLUE=\033[0;34m@
 YELLOW=\033[0;33m
 RESET=\033[0m
 
@@ -53,35 +54,93 @@ else
 	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)
 	@mkdir -p $(PROJECT_NAME)/$(INC_DIR)
 	@mkdir -p $(PROJECT_NAME)/$(LIB_DIR)
+	@touch $(PROJECT_NAME)/$(LIB_DIR)/.gitkeep
 	@mkdir -p $(PROJECT_NAME)/$(TST_DIR)
-	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)/$(INIT_DIR)
-	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)/$(PARSE_DIR)
-	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)/$(CORE_DIR)
-	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)/$(UTILS_DIR)
-	@mkdir -p $(PROJECT_NAME)/$(SRC_DIR)/$(ERR_DIR)
+	@touch $(PROJECT_NAME)/$(TST_DIR)/.gitkeep
+	@mkdir -p $(PROJECT_NAME)/$(APP_DIR)
+	@mkdir -p $(PROJECT_NAME)/$(CORE_DIR)
+	@touch  $(PROJECT_NAME)/$(CORE_DIR)/core.hello_word$(TYPE_LANGUAGE)
+	@touch  $(PROJECT_NAME)/$(CORE_DIR)/.gitkeep
+	@mkdir -p $(PROJECT_NAME)/$(UTILS_DIR)
+	@touch  $(PROJECT_NAME)/$(UTILS_DIR)/.gitkeep
+	@mkdir -p $(PROJECT_NAME)/$(PUBLIC_DIR)
+	@touch  $(PROJECT_NAME)/$(PUBLIC_DIR)/.gitkeep
 	@touch $(PROJECT_NAME)/$(MKE_FILE)
-	@touch $(PROJECT_NAME)/$(INC_DIR)/$(UTILS_FILE_H)
 	@touch $(PROJECT_NAME)/$(RDM_FILE)
 	@touch $(PROJECT_NAME)/$(INC_DIR)/$(PROJ_FILE_H)
 	@touch $(PROJECT_NAME)/$(SRC_DIR)/$(PROJ_FILE_C)
 	@mkdir -p $(PROJECT_NAME)/.$(MODULAR_ARCH)
 	@touch $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "######################################################################################################" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#                                                                                                    #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    Ce projet a été méticuleusement généré avec ModArch.                                            #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    Nom du projet : $(PROJECT_NAME)                                                                 #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    Généré avec passion et un brin de magie par Mamadou Bah (42 Stud)                               #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    Ce fichier est sacré, il est sous la protection de la licence ModArch.                          #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    Toute tentative de modification ou de suppression entraînera des conséquences imprévues.        #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "#    En touchant à ce fichier, vous risquez de briser l'équilibre... c'est juste un avertissement 😉 #" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
-	@echo "######################################################################################################" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
+	@touch $(PROJECT_NAME)/.gitignore
+	@git init $(PROJECT_NAME)
+	@echo "######################################################################################################" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Projet : $(PROJECT_NAME) " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Créé par : $(USER) " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Date de création : $(DATE) " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Bienvenue dans le monde fascinant de ModArch! Ce fichier est votre guide sacré, " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# soigneusement conçu pour assurer le bon fonctionnement et la sécurité de votre projet. " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Soyez inspiré et créatif, mais souvenez-vous, avec un grand pouvoir vient une grande " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# responsabilité. Toute modification de ce fichier pourrait perturber l'équilibre subtil que " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# nous avons soigneusement établi. " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# Si vous avez des questions ou besoin d'aide, n'hésitez pas à consulter votre guide spirituel: " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# $(USER) " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "# " >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
+	@echo "######################################################################################################" >> $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config 
 	@chmod 444 $(PROJECT_NAME)/.$(MODULAR_ARCH)/.$(MODULAR_ARCH).config
 	@echo "$(BLUE)Structure du projet $(RED)<$(PROJECT_NAME)>$(RESET) créée avec succès 🤪$(RESET) "
 	@echo "                                                                                "
+	
+	# ecrire dans le fichier .gitignore
+
+	@cd $(PROJECT_NAME) && echo  "updateMakefile \n" >> .gitignore
+	@cd $(PROJECT_NAME) && echo  "exec \n" >> .gitignore
+	@cd $(PROJECT_NAME) && echo   "*.o \n" >> .gitignore
+	@cd $(PROJECT_NAME) && echo  "*.out \n" >> .gitignore
+	@cd $(PROJECT_NAME) && echo  "test/ \n" >> .gitignore
+
+	# ecrire dans le fichier .h
+
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "#ifndef $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H" > $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# define $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H\n" >> $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# include <unistd.h>\n" >> $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "void\thello_word();\n" >> $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo   "#endif" >> $(PROJ_FILE_H)
+
+	# ecrire dans le fichier core.hello_word.c
+
+	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "#include \"../../../$(INC_DIR)/$(PROJ_FILE_H)\"" > core.hello_word$(TYPE_LANGUAGE)
+	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo  "\nvoid\thello_word()\n{\t" >> core.hello_word$(TYPE_LANGUAGE)
+	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "\twrite(1, \"Hello Word\", 10);\n}" >> core.hello_word$(TYPE_LANGUAGE)
+
+	# ecriture du fichier main.c
+
+	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo   "#include \"../$(INC_DIR)/$(PROJ_FILE_H)\"\n" > $(PROJ_FILE_C)
+	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo  "int\tmain(int argc, char **argv)\n{\n\t(void) argc;\n\t(void) argv;\n" >> $(PROJ_FILE_C)
+	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo  "\thello_word();\n\treturn (0);\n}" >> $(PROJ_FILE_C)
+
+	@git clone https://github.com/mbah24-dev/ForgeMaker-Executable.git $(PROJECT_NAME)/.genMake
+	@cd $(PROJECT_NAME) && ./.genMake/releases/ForgeMaker $(PROJECT_NAME)
+	@cp $(PROJECT_NAME)/.genMake/releases/ForgeMaker $(PROJECT_NAME)/updateMakefile 
+	@rm -rf $(PROJECT_NAME)/.genMake
+
+	@echo "                                                                                "
+	@echo "$(GREEN)Génération de l'architecture pour le projet '$(PROJECT_NAME)'...$(RESET)"
+	@echo "$(YELLOW)"
+	@echo "   __  _______  ___  ___   ___  _______ __  ___  ____  __  ______  ___   __ ______ ___ "
+	@echo "  /  |/  / __ \\/ _ \\/ _ | / _ \\/ ___/ // / / _ \\/ __/ /  |/  / _ )/ _ | / // / / /|_  |"
+	@echo " / /|_/ / /_/ / // / __ |/ , _/ /__/ _  / / // / _/  / /|_/ / _  / __ |/ _  /_  _/ __/ "
+	@echo "/_/  /_/\\____/____/_/ |_/_/|_|\\___/_//_/ /____/___/ /_/  /_/____/_/ |_/_//_/ /_//____/ "
+	@echo "                                                                                       "
+	@echo "$(RESET)"
+
 endif
 	
-all: $(MODULAR_ARCH) help
-
+all: $(MODULAR_ARCH) write_the_file_hello_word  write_the_file_main help
+	
 help:
 	@echo "$(YELLOW)"
 	@echo "   __  _______  ___  ___   ___  _______ __  ___  ____  __  ______  ___   __ ______ ___ "
