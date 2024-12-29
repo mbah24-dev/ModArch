@@ -6,7 +6,7 @@
 #    By: mbah <mbah@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/22 22:54:24 by mbah              #+#    #+#              #
-#    Updated: 2024/12/26 22:56:53 by mbah             ###   ########.fr        #
+#    Updated: 2024/12/29 14:39:13 by mbah             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ PROJECT_NAME ?= modular_project
 TYPE_LANGUAGE ?= .c
 USER         := $(shell whoami)
 DATE         := $(shell date '+%Y-%m-%d %H:%M:%S')
-MODULAR_ARCH = ModArch
+MODULAR_ARCH = ModArchExec
 SRC_DIR      = src
 APP_DIR      = src/app
 INC_DIR      = inc
@@ -107,19 +107,19 @@ else
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "#ifndef $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H" > $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# define $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H\n" >> $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# include <unistd.h>\n" >> $(PROJ_FILE_H)
-	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "void\thello_word();\n" >> $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "void\thello_word(void);\n" >> $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo   "#endif" >> $(PROJ_FILE_H)
 
 	# ecrire dans le fichier core.hello_word.c
 
 	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "#include \"../../../$(INC_DIR)/$(PROJ_FILE_H)\"" > core.hello_word$(TYPE_LANGUAGE)
-	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo  "\nvoid\thello_word()\n{\t" >> core.hello_word$(TYPE_LANGUAGE)
+	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo  "\nvoid\thello_word(void)\n{" >> core.hello_word$(TYPE_LANGUAGE)
 	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "\twrite(1, \"Hello Word\", 10);\n}" >> core.hello_word$(TYPE_LANGUAGE)
 
 	# ecriture du fichier main.c
 
 	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo   "#include \"../$(INC_DIR)/$(PROJ_FILE_H)\"\n" > $(PROJ_FILE_C)
-	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo  "int\tmain(int argc, char **argv)\n{\n\t(void) argc;\n\t(void) argv;\n" >> $(PROJ_FILE_C)
+	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo  "int\tmain(int argc, char **argv)\n{\n\t(void) argc;\n\t(void) argv;" >> $(PROJ_FILE_C)
 	@cd $(PROJECT_NAME)/$(SRC_DIR) && echo  "\thello_word();\n\treturn (0);\n}" >> $(PROJ_FILE_C)
 
 	@git clone https://github.com/mbah24-dev/ForgeMaker-Executable.git $(PROJECT_NAME)/.genMake
