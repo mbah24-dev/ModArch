@@ -6,7 +6,7 @@
 #    By: mbah <mbah@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/22 22:54:24 by mbah              #+#    #+#              #
-#    Updated: 2025/01/09 15:18:34 by mbah             ###   ########.fr        #
+#    Updated: 2025/01/09 15:23:24 by mbah             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,13 +107,13 @@ else
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "#ifndef $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H" > $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# define $(shell echo $(PROJECT_NAME) | tr 'a-z' 'A-Z')_H\n" >> $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "# include <unistd.h>\n" >> $(PROJ_FILE_H)
-	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "void\thello_word();\n" >> $(PROJ_FILE_H)
+	@cd $(PROJECT_NAME)/$(INC_DIR) && echo  "void\thello_word(void);\n" >> $(PROJ_FILE_H)
 	@cd $(PROJECT_NAME)/$(INC_DIR) && echo   "#endif" >> $(PROJ_FILE_H)
 
 	# ecrire dans le fichier core.hello_word.c
 
 	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "#include \"../../../$(INC_DIR)/$(PROJ_FILE_H)\"" > core.hello_word$(TYPE_LANGUAGE)
-	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo  "\nvoid\thello_word()\n{\t" >> core.hello_word$(TYPE_LANGUAGE)
+	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo  "\nvoid\thello_word(void)\n{\t" >> core.hello_word$(TYPE_LANGUAGE)
 	@cd $(PROJECT_NAME)/$(CORE_DIR) && echo   "\twrite(1, \"Hello Word\", 10);\n}" >> core.hello_word$(TYPE_LANGUAGE)
 
 	# ecriture du fichier main.c
